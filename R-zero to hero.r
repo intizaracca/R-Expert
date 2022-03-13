@@ -49,3 +49,17 @@ while(x<15){
   print(v)
   x<-x+2
 }
+# Take input from user
+name<- 'intizar'
+age<-'34'
+name<-readline(prompt = 'Enter my name: ')
+age<-readline(prompt = 'Enter ur age: ')
+print(paste('hello my name is:', 'and my age is :',age))
+
+name<- 'intizar'
+age<-'34'
+
+print(paste('hello my name is:',name, 'and my age is :',age))
+paste('hello','233','ram',sep = '_')
+paste('hello','233','ram',sep = ' ')
+paste0('hello','233','ram')
