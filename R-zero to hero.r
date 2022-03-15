@@ -129,4 +129,22 @@ print(grep(pat,s2))
 s2<-c('abcd','bcbd','abcdbcbd')
 print(grep('abc',s2))
 
+# 19 data structures (to store data)
+## vectors,Matrix,Array,List,Data frame
+# all the elements of vectores are components
+# len() find the no of elements in a vector
+# atomic vector and list
+
+a<-c(3,4,5,1,5,8)
+a
+b<-3:8
+b
+sq<-seq(1,6)
+sq
+sq<-seq(1,13, by=2)
+sq
+sq1<-seq(1,4,length.out = 6)
+sq1
+# access of vector by indexing start from 1 not from 0
+sq[2]
 
