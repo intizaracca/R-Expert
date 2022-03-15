@@ -147,4 +147,31 @@ sq1<-seq(1,4,length.out = 6)
 sq1
 # access of vector by indexing start from 1 not from 0
 sq[2]
+# List
+vec<-c(8,9,4,7)
+char_vec<- c('Ali','Noor','Abubakar','Usman')
+logic_vec<- c(TRUE,FALSE,TRUE,FALSE)
+list1<- list(vec,char_vec,logic_vec)
+list1
 
+list3<- list(c('Ali','Arham'),c(2,3),list('batch','Tach'))
+list3
+# Naming of list
+names(list3)<-c('Student','No','Course')
+list3
+# Accessing list
+print(list3[1])
+list3[2]
+list3['No']
+list3$Course 
+
+# Convert list into vector by unlist()
+list4<- list(5:10)
+list5<- list(4:19)
+class(list5)
+v1<-unlist(list4)
+list4
+class(v1)
+nex<-c(list4,list5)
+nex
+class(nex)
