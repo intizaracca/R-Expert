@@ -175,3 +175,28 @@ class(v1)
 nex<-c(list4,list5)
 nex
 class(nex)
+# R Vector Function
+#rep() it is replicating sequence
+rep(c(2,3,4),time=5)
+rep(c(3,5,8),each=2)
+rep(c(0,8),time=c(3,4))
+rep(1:4,length.out=9)
+# seq() it will not repeat objects
+seq(from=3.5,to=5.5,by = .5)
+seq(from=-2.7,to=1.5,length.out=8)
+#any() and all() function
+x<-1:10
+x
+any(x>5)
+any(x>15)
+all(x>5)
+all(x==5)
+
+
+
+
+
+
+
+
+
