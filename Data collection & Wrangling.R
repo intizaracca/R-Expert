@@ -13,7 +13,7 @@ str(Budgetdata)
 ##Read.table for reading the file
 #important parameters file, header,separator,row.names,nrows.
 c_camera<-read.csv("Cameras.csv")
-cdata<- read.table('Cameras.csv', sep = ',' header = TRUE)
+# cdata<- read.table('Cameras.csv', sep = ',' header = TRUE)
 head(c_camera)
 cdata<-read.csv('cameras.csv')
 cdata
