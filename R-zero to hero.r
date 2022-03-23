@@ -191,6 +191,47 @@ any(x>5)
 any(x>15)
 all(x>5)
 all(x==5)
+# Arrays are data objects which allow us to store data in more than 2 dimension
+#array() (2,3,4)
+v1<-c(1,4,5,6)
+v2<-c(10,20,30,40,50,60,70)
+
+v3<- array(c(v1,v2 ), dim = c(3,3,4))
+
+v3
+#name of rows,column and matrix
+
+c_name<-c('c1','c2','c3')
+r_name<-c('r1','r2','r3')
+m_name<-c('mat1','mat2','mat3','mat4')
+v3<-array(c(v1,v2),dim=c(3,3,4),dimnames = list(r_name,c_name,m_name))
+v3
+
+#access the matrix
+
+print(v3[3,,2])
+print(v3[3,2,2])
+print(v3[3,,3])
+print(v3[1,,4])
+print(v3[,2,2])
+print(v3[,,2]) 
+print(v3[,,4])
+#Manipulation of array
+v4<-c(1,8,5,9)
+v5<-c(1,2,3,4,5,6,7)
+
+v6<- array(c(v4,v5 ), dim = c(3,3,4))
+
+v6
+
+v7<-v3+v6
+print(v7)
+#R Matrix
+mat<-matrix(c(2:13),nrow = 4, ncol = 4,byrow = TRUE)
+mat
+mat1<-matrix(c(2:15),nrow = 4,byrow = FALSE)
+mat1
+
 
 
 
