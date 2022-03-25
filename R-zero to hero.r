@@ -1,6 +1,6 @@
 # from different resources for data science
 print('Hello')
-# for loop it isused to repeate the values
+# for loop it is used to repeat the values
 for (year in 1:10) {
   print(year)
 }
@@ -216,7 +216,7 @@ print(v3[1,,4])
 print(v3[,2,2])
 print(v3[,,2]) 
 print(v3[,,4])
-#Manipulation of array
+#Manipulation of array MORE THAN ONE DIMENSION
 v4<-c(1,8,5,9)
 v5<-c(1,2,3,4,5,6,7)
 
@@ -231,13 +231,56 @@ mat<-matrix(c(2:13),nrow = 4, ncol = 4,byrow = TRUE)
 mat
 mat1<-matrix(c(2:15),nrow = 4,byrow = FALSE)
 mat1
+############## Data Frame ############
+#######################################
 
+emp.data<-data.frame(
+  emp_id = c(1:10),
+  Emp_name= c('Ali','Arham','Abdullah','Akram','Riaz','Noor','Basheer','Khan','Paan','LOLipop'),
+  Sal = c(500,333,444,585,254,212,665,888,666,850),
+  Join_date = as.Date(c('2012-01-10','2013-09-23','2014-01-01','2015-01-01','2012-01-01','2013-09-23','2014-01-02','2015-01-01','2010-01-01','2019-01-02')),
+  
+  stringsAsFactors = FALSE
+)
 
+print(emp.data)
+###Structure of data
 
+str(emp.data)
 
+#Retrieve some columns and rows
 
+F1<- data.frame(emp.data$Emp_name,emp.data$Sal)
+F1
 
+# Find column with index
 
+F2<- emp.data[3]
+F2
 
+F3<- emp.data[2:4]
+F3
+#Rows
+F4<-emp.data[c(2,3),c(1,4)]
+F4
+F5<-emp.data[3,]
+F5
+# 2nd row 3 column a particular data
+F6<-emp.data[2,3]
+F6
+# complete set of rows and columns
+F7<- emp.data[c(2,3)]
+F7
+# Add columns and rows
+#cbind(), rbind()
 
+xy<-list(11,'Fateh',700,'2014-01-08')
+emp.data<-rbind(emp.data,xy)
 
+yx<- c('fsd','fsd','fsd','fsd','fsd','fsd','fsd','fsd','fsd','fsd','fsd')
+emp.data<-cbind(emp.data, City = yx)
+emp.data
+ #Delete row and column
+emp.data[-4]
+emp.data$City<-NULL
+emp.data
