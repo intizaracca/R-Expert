@@ -283,4 +283,47 @@ emp.data
  #Delete row and column
 emp.data[-4]
 emp.data$City<-NULL
-emp.data
+emp.dfaata
+#### Factor in R
+
+dir<- c("north","west","east","south")
+is.factor(dir)
+factor(dir)
+factor(dir,levels = c("north","west","east","south"),labels = c("n","w","e","s"))
+ ## Import CSV file
+## getwd() wd
+getwd()
+v<- c(12, 34, 56, 32, 68, 88, 24)
+sort(v)
+sort(v, decreasing = T)
+order(v)
+v[order(v)]
+rank(v) ## indexing
+setwd("C:\\Users\\intiz\\OneDrive\\Documents\\R\\Datasets")
+getwd()
+Fifa <- read.csv("fifa.csv")
+View(Fifa)
+print(is.data.frame(Fifa))
+print(ncol(Fifa))
+print(nrow(Fifa))
+FIFA2 <-read.table(file="C:\\Users\\intiz\\OneDrive\\Documents\\R\\Datasets\\fifa.csv",header = T, sep = ",")
+FIFA2
+FIFA2<-read.csv("C:\\Users\\intiz\\OneDrive\\Documents\\R\\Datasets\\fifa.csv")
+View(FIFA2)
+str(FIFA2) # structure of data fram
+Summary(FIFA2)
+names(FIFA2)
+head(FIFA2)
+length(FIFA2)
+D1<- FIFA2$dob
+D1
+max_val<- max(FIFA2$value_eur)
+max_val
+min(FIFA2$value_eur)
+detail<- subset(FIFA2, value_eur==max(value_eur))
+detail
+details<-subset(FIFA2,league_name = "French Ligue 1")
+details
+detai<-subset(FIFA2,league_name == "French Ligue 1"&value_eur>63500000)
+detai
+### write.csv for add something in csv file
