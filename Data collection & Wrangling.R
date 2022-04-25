@@ -10,6 +10,8 @@ datedownload
 Budgetdata<-read.csv("Budget.csv")
 str(Budgetdata)
 
+
+
 ##Read.table for reading the file
 #important parameters file, header,separator,row.names,nrows.
 c_camera<-read.csv("Cameras.csv")
@@ -36,9 +38,59 @@ read_excel(xlsx_example)
 head(xlsx_example)
 getwd()
 # writexl librabry installation
-#devtools::install_github("ropensci/writexl")
+#devtools::install_github("ropensci/writexl") not working
 install.packages('writexl')
 library('writexl')
-# convert csv file tof excel
+# convert csv file to excel
 write_xlsx(cdata, 'cameras.xlsx')
 read_xlsx('cameras.xlsx')
+
+#### Web Scrapping ####
+
+## Read HTML webpage
+
+library(rvest)
+theUrl<- 'https://en.wikipedia.org/wiki/Brazil_national_football_team'
+file<- read_html(theUrl)
+
+tables<-html_nodes(file, 'table')
+table1 <- html_table(tables[4], fill = TRUE)
+print(table1)
+View(table1)
+
+?html_text
+ ###SQLite database
+install.packages('RSQLite')
+ #drv: and path
+#Creating Database and tables
+library(RSQLite)
+data('mtcars')
+mtcars$car_names <- rownames(mtcars)
+rownames(mtcars) <- c()
+head(mtcars) 
+getwd()
+
+### create or connect to database
+
+
+conn<- dbConnect(RSQLite::SQLite(), 'CarsDB')
+ ### write the mtcars into database
+### connect_var, name  of table, value (data frame) and append can use for xpl tables
+dbWriteTable(conn, 'cars_data', mtcars)
+dbListTables(conn)
+### Quick access
+dbListFields(conn, 'cars_data')
+rdd <- dbReadTable(conn, 'cars_data')
+###Executing SQL Queries
+
+install.packages('RMySQL')
+
+## MySQL
+
+##### rvest
+library('rvest')
+rl <- "https://en.wikipedia.org/wiki/List_of_bicycle-sharing_systems"
+URL1<- read_html(rl)
+tables1<-html_nodes(file, 'table')
+
+getwd()
