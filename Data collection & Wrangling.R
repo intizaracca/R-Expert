@@ -94,3 +94,17 @@ URL1<- read_html(rl)
 tables1<-html_nodes(file, 'table')
 
 getwd()
+library("xlsx")
+setwd("C:\\Users\\intiz\\OneDrive\\Documents\\R\\Datasets")  
+camera98<- read.xlsx("abc.xlsx", sheetIndex = 1, header = TRUE)
+View(camera98)
+head(camera98)
+tail(camera98)
+length(camera98)
+str(camera98)
+max(camera98$b)
+camera98$c
+subset(camera98,b>=30)
+library("readxl")
+camera90<- read_excel("abc.xlsx")
+camera90

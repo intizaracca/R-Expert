@@ -326,4 +326,78 @@ details<-subset(FIFA2,league_name = "French Ligue 1")
 details
 detai<-subset(FIFA2,league_name == "French Ligue 1"&value_eur>63500000)
 detai
-### write.csv for add something in csv file
+### write.csv for add something in csv file ###
+#### Excel file
+getwd()
+setwd("C:\\Users\\intiz\\OneDrive\\Documents\\R\\Datasets")
+library("xlsx")
+getwd()
+hwo<- read.xlsx("abc.xlsx", sheetIndex = 1 , header = TRUE)
+hwooo<- read.xlsx("abc.xlsx", sheetIndex = 1, header = TRUE)
+hwo
+view(hwo)
+print(hwo)
+summary(hwo)
+### dplyr package
+library("dplyr")
+head("FIFA2")
+select(FIFA2, -age)
+names(FIFA2)
+head(select(FIFA2, age, weight_kg))
+head(select(FIFA2, starts_with("me")))
+filter(FIFA2, age>30)
+select(filter(FIFA2,age>=30))
+library("magrittr") ### PIPE function to join the function
+FIFA2%>% select(age) %>% filter(age>30) %>% head   
+
+###mutate for adding column
+
+library("xlsx")
+names(FIFA2)
+FIFA3<-FIFA2 %>% mutate(my_age = age+10) %>% head
+names(FIFA3)
+View(FIFA3)
+### Group by
+nife<- group_by(FIFA3, age)
+nife2<-FIFA2 %>% group_by(short_name)
+####### Data importing from relational database
+library("RMySQL")
+con<- dbConnect(MySQL(),
+                username = "root",
+                password = "admin",
+                host = "localhost",
+                port = 3306,
+                dbname = "student"
+)
+con<- dbConnect(MySQL(),
+                username = "root",
+                dbname = "student"
+)
+dbListTables(con)
+dbListFields(con, "personal")
+data4<- dbGetQuery(con,"select* from personal")
+data4
+rs<-dbSendQuery(con, "select * from personal")
+rs
+darasnd<-fetch(rs, n = 4)
+View(darasnd)
+fetch(rs, n = -1) ### for complete table
+########### BAR CHART #############
+gig<- c(25,30,35,58,45)
+barplot(gig)
+H2<- c(12,35,54,31,42)
+M2<-c("feb","Mar","Apr","May","Jun")
+barplot(H2,names.arg = M2,xlab = "Month",ylab = "Revenue",col = "red",
+        main = "Revenue Bar Chart",border = "Black")
+Months<- c("feb","Mar","Apr","May","Jun")
+regions<-c("Punjab","Sind","KPK")
+values<- matrix(c(12,32,65,84,78,45,2,45,88,69,15,2,21,85,58), nrow = 3, ncol = 5, byrow = TRUE)
+barplot(values, names.arg = Months, xlab = "Month", ylab = "Revenue",col = c("red","blue","green"), main = "Total Revenue")
+legend("topright",regions,cex = .5,fill = c("red","blue","green"))
+###### PIE Chart#########
+x <-c(12,35,56,75)
+labels <- c("Pak","UK","Japan","USA")
+pie(x,labels)
+pie(x,labels,main="country Pie Chart",col=rainbow(length(x)))
+color <- c("blue","purple","red","green")
+pie(x,labels,main = "Country Pie Chart",col = color)
