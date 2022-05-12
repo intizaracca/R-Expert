@@ -108,3 +108,24 @@ subset(camera98,b>=30)
 library("readxl")
 camera90<- read_excel("abc.xlsx")
 camera90
+x<-c(1,2,3,4,5,6)
+for (i in 1:6) {
+  print(x[i])
+}
+as.data.frame(1970-01-15)
+as.date("1970-01-01")
+########################## WEB SCRAPPING ######################
+library(rvest)
+The_URL<-"https://en.wikipedia.org/wiki/Brazil_national_football_team"
+file256<- read_html(The_URL)
+file256
+Tables256<- html_nodes(file256,"table")
+Tables256_4 <- html_table(Tables256[4], fill = TRUE)
+Tables256_2 <- html_table(Tables256[2], fill = TRUE)
+Tables256_50 <- html_table(Tables256[50], fill = TRUE)
+print(Tables256_50)
+library(dplyr)
+imdb<-"https://www.imdb.com/chart/top?pf_rd_m=A2FGELUUNOQJNL&pf_rd_p=470df400-70d9-4f35-bb05-8646a1195842&pf_rd_r=94TPAW7RKHHRQ6VSVZG3&pf_rd_s=right-4&pf_rd_t=15506&pf_rd_i=moviemeter&ref_=chtmvm_ql_3"
+film<- read_html(imdb)
+Names<- film %>% html_nodes(".titleColumn a")%>% html_text()
+Names

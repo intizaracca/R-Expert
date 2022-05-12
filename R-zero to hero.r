@@ -401,3 +401,25 @@ pie(x,labels)
 pie(x,labels,main="country Pie Chart",col=rainbow(length(x)))
 color <- c("blue","purple","red","green")
 pie(x,labels,main = "Country Pie Chart",col = color)
+###############Apply############
+## apply : row and column
+## sapply: simplified apply:column
+## lapply: list apply: column
+## mapply (map): multivariate apply
+## vapply: verified apply
+## tapply: tag apply
+## eapply: environment apply
+## rapply: resursive apply
+## column wise statistic calculation
+for(col in colnames(mtcars)){
+  print(mean(mtcars[[col]]))
+}
+x<- list(a=1:5, b = rnorm(10))
+x
+lapply(x, mean)
+lapply(x, median)
+lapply(x,mode)
+lapply(x,sum)
+lapply(x, runif)
+sapply(x,mean)
+rowMeans(x)
