@@ -129,3 +129,12 @@ imdb<-"https://www.imdb.com/chart/top?pf_rd_m=A2FGELUUNOQJNL&pf_rd_p=470df400-70
 film<- read_html(imdb)
 Names<- film %>% html_nodes(".titleColumn a")%>% html_text()
 Names
+github<- "https://github.com/"
+github_web<-read_html(github)
+print(github_web)
+github_web %>% html_node("head") %>% html_text()
+github_web %>% html_node("body") %>% html_text()
+github_web %>% html_node("script") %>% html_text()
+github_web %>% html_node("p") %>% html_text()
+github_web %>% html_node("h1") %>% html_text()
+github_web %>% html_node("a") %>% html_text("skip")
