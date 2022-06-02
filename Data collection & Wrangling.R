@@ -138,3 +138,58 @@ github_web %>% html_node("script") %>% html_text()
 github_web %>% html_node("p") %>% html_text()
 github_web %>% html_node("h1") %>% html_text()
 github_web %>% html_node("a") %>% html_text("skip")
+
+############### DB
+library(RSQLite)
+data("mtcars")
+mtcars
+
+
+#################### data.table################
+library(data.table)
+das<- data.frame(x=rnorm(9), y=rep(c("a","b","c"), each=3),z=rnorm(9))
+das
+head(das, 4)
+das1<- data.table(x=rnorm(9), y=rep(c("a","b","c"), each=3),z=rnorm(9))
+das1
+tables()
+
+####47 calculate value
+
+das1[,list(mean(x),sum(z),mode(y))]
+das1[,w:=z^2]
+das1
+das1[,a:=x>0]
+das1
+######48 merging of tables
+das1<-data.table(x=c('a','b','c','dtl'),y=1:4)
+das2<-data.table(x=c('a','b','c','dt2'),z=5:7)
+setkey(das1,x); setkey(das2,x)
+merge(das1,das2)
+das1
+das2
+########## 49 ##########
+getwd()
+setwd("C:\\Users\\intiz\\OneDrive\\Documents\\R\\Datasets")
+library()
+cars<- read.csv("cars.csv")
+cares<-data.table::fsort(cars$Make)
+cares
+#######  50 ####### subsetting and sorting
+set.seed(150)
+x<- data.frame("var1"=sample(1:5),"var2"=sample(6:10),"var3"=sample(11:15))
+x
+x<-x[sample(1:5),];x$var2[c(1,3)]=NA
+x
+x[,1]
+x[,"var1"]
+x[1:2,"var2"]
+x[(x$var1<=3 & x$var3>11),]
+sort(x$var1,decreasing = FALSE, na.last = TRUE)
+x[order(x$var1),]
+x[order(x$var1,x$var2),]
+####### 54############ Important
+is.na(x)
+which(is.na(x))
+sum(is.na(x))
+colSums(is.na(x))
