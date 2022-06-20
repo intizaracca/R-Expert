@@ -193,3 +193,49 @@ is.na(x)
 which(is.na(x))
 sum(is.na(x))
 colSums(is.na(x))
+dataset::airquality
+### 60 split
+
+and apply####
+library(datasets)
+head(InsectSprays)
+tapply(InsectSprays$count,InsectSprays$spray,sum)
+InsectSprays
+SP<-split(InsectSprays$count,InsectSprays$spray)
+SP
+SPCount<- lapply(SP,sum)
+SPCount
+unlist(SPCount)
+sapply(SPCount,sum)
+###### 60 merge #######
+Activity<- data.frame(ID=c(01,02,03,04,05,06,07),units=c(23,43,21,32,13,12,32))
+names<-data.frame(operator=c("Larry","Curly","moon","Jack","Kill","Perry","Kitty"))
+Merge_AC<-cbind(Activity,names)
+Merge_AC
+###### 62 types of merge
+### natural join, full outer join, left outer join, right outer join 
+library(datasets)
+x1<- data.frame(LETTERS,Xindex=1:26)
+x1
+y1<-data.frame(letters, Xindex= c(1:10,15,20,22:35))
+y1
+merge(x1,y1)
+merge(x1,y1, all=TRUE)
+names(x1)<- c("alpha","lotnumber")
+x1
+merge(x1,y1, by.x = "lotnumber", by.y="Xindex")
+merge(x1,y1, by.x = "lotnumber", by.y="Xindex", all=TRUE)
+##### 65 Tidyverse############
+install.packages("tidyverse")
+msleep<- read.csv("msleep.csv")
+head(msleep)
+library(tidyverse)
+data.frame(msleep)
+sleeptime<- select(msleep,ï..name,sleep_total)
+head(sleeptime)
+filter(msleep, order == "carnivora")
+group<- group_by(msleep, genus)
+group
+levels(group$genus)
+mutate(msleep, name2= sleep_total*2)
+#########  68 Dplyr###########
