@@ -10,7 +10,7 @@
 
 ### Exploratory Graph
 ### parameters are important and graph is based on it.
-## 1 to understand data property
+## 1 to understand data properly
 ## 2 to find patterns of data
 ## 3 To suggest modeling strategies.
 ## 4 to "debug" analyses
@@ -118,3 +118,71 @@ qplot(displ, hwy, data= mpg, geom = c('point','smooth'))
 qplot( hwy, data= mpg, fill = drv)
 ### Facets####
 qplot(displ, hwy,data= mpg, facets = . ~ drv)
+
+### Maacs data set example###
+
+load("~/R/R-for Data Science/R-Expert/maacs.rda")
+head(maacs)
+names(maacs)
+#histogram#
+qplot(log(eno), data=maacs)
+qplot(log(eno), data=maacs, fill = mopos)
+## density plot
+qplot(log(eno), data=maacs, geom = 'density')
+qplot(log(eno), data=maacs, color=mopos, geom = 'density')
+##scatter plot##
+qplot(log(pm25),log(eno), data =maacs, shape=mopos)
+qplot(log(pm25),log(eno), data =maacs, color=mopos)      
+qplot(log(pm25),log(eno), data =maacs, color=mopos, geom = c('point','smooth'),method='lm')     
+qplot(log(pm25),log(eno), data =maacs, color=mopos, geom = c('point','smooth'),method='lm', facets = .~mopos) 
+### basic components of ggplot2 plot###
+#data, aesthetic, geometry, facets, stats, scales, coordinates###
+maacs_2<- read.csv('E:/CAT/4,5,6 months/Expolatory Data Analysis/bmi_pm25_no2_sim.csv', header = TRUE)
+head(maacs_2)
+##basic plot##
+
+qplot(logpm25, NocturnalSympt, data = maacs_2, facets = .~ bmicat, geom= c('point','smooth'), method= 'lm')
+
+## ggplot2###
+g<- ggplot(maacs_2,aes(logpm25,NocturnalSympt))
+summary(g)
+p<- g+ geom_point()
+print(p)
+g + geom_point()
+g+geom_point()+geom_smooth()
+g+ geom_point()+geom_smooth(method = 'lm')
+g+geom_point()+geom_smooth(method = 'lm')+facet_grid(.~ bmicat)
+g+geom_point()+
+  geom_smooth(method = 'lm')+
+  facet_grid(.~bmicat)
+g+geom_point()+
+  geom_smooth(method = 'lm')+
+  facet_grid(bmicat~.)
+## Annotation###
+#Labels: xlab(),ylab(),labs(),ggtitle()
+g+geom_point(color = 'steelblue', size =3, alpha = 1/2 )
+##alpha use for transparency,
+g+geom_point(aes(color = bmicat), size =3, alpha = 1/2 )
+### Modifying labels
+g+ geom_point(aes(color= bmicat))+labs(title = 'MAACS Cohort')+
+  labs(x= expression('log' * PM[2.5]), y = 'Nocturnal Symptoms')
+## Customising smooth##
+g+geom_point(aes(color = bmicat), size =3, alpha = 1/2 )+ 
+  geom_smooth(size = 3, linetype = 5, method = 'lm', se = FALSE)
+## theme##
+g+geom_point(aes(color = bmicat), size =3, alpha = 1/2 )+ 
+  geom_smooth(size = 3, linetype = 5, method = 'lm', se = FALSE)+
+  theme_bw(base_family = 'Times')
+g+geom_point(size =3, alpha = 1/2 )+ facet_grid(.~bmicat)+
+  geom_smooth(size = 3, linetype = 5, method = 'lm', se = FALSE)+
+  theme_bw(base_family = 'Times')
+### Axis Limits
+testdat <- data.frame(x = 1:100, y = rnorm(100))
+testdat[50,2] <- 100
+plot(testdat$x, testdat$y, type = "l", ylim = c(-3,3)) ## 'l' mean line plot, ylim mean y axisis limit
+g <- ggplot(testdat, aes(x = x, y = y))
+g + geom_line()
+g + geom_line() + ylim(-3, 3)
+
+g + geom_line() + coord_cartesian(ylim = c(-3, 3))
+
