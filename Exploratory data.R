@@ -122,6 +122,7 @@ qplot(displ, hwy,data= mpg, facets = . ~ drv)
 ### Maacs data set example###
 
 load("~/R/R-for Data Science/R-Expert/maacs.rda")
+
 head(maacs)
 names(maacs)
 #histogram#
@@ -179,10 +180,24 @@ g+geom_point(size =3, alpha = 1/2 )+ facet_grid(.~bmicat)+
 ### Axis Limits
 testdat <- data.frame(x = 1:100, y = rnorm(100))
 testdat[50,2] <- 100
-plot(testdat$x, testdat$y, type = "l", ylim = c(-3,3)) ## 'l' mean line plot, ylim mean y axisis limit
+plot(testdat$x, testdat$y, type = "l", ylim = c(-3,3)) ## 'l' mean line plot, ylim mean y axises limit
 g <- ggplot(testdat, aes(x = x, y = y))
 g + geom_line()
-g + geom_line() + ylim(-3, 3)
+g + geom_line() + ylim(-3, 3)## outl 
 
 g + geom_line() + coord_cartesian(ylim = c(-3, 3))
+### Final Plot##
 
+str(maacs_2)
+cutpoints<- quantile(maacs_2$logno2_new,seq(0, 1, length=4), na.rm=TRUE)
+maacs_2$no2tert<-cut(maacs_2$logno2_new, cutpoints)
+levels(maacs_2$no2tert)
+g<-ggplot(maacs_2, aes(logpm25, NocturnalSympt))
+g+ geom_point(alpha=1/3)+
+                facet_wrap(bmicat ~ no2tert, nrow = 2, ncol = 4)+
+                geom_smooth(method= 'lm', se= FALSE, col='steelblue')+
+                theme_bw(base_family = 'Avenir', base_size = 10)+
+                labs(x= expression('log' * PM[2.5]))+
+                labs(y='Noctural Symptoms')+
+                labs(title = 'MAACs Cohort')
+              
